@@ -1,8 +1,6 @@
 package hiber.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Car {
@@ -11,9 +9,14 @@ public class Car {
     @GeneratedValue
     private Long carId;
 
+    @Column
     private String model;
 
+    @Column
     private Integer series;
+
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
+    private User user;
 
     public Car() {
     }
@@ -21,6 +24,14 @@ public class Car {
     public Car(String model, Integer series) {
         this.model = model;
         this.series = series;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getCarId() {
@@ -47,5 +58,14 @@ public class Car {
         this.series = series;
     }
 
-
+    //To String method for debugging
+    @Override
+    public String toString() {
+        return "\nCar{" +
+                "carId=" + carId +
+                ", model='" + model + '\'' +
+                ", series=" + series +
+                ", user=" + user +
+                '}';
+    }
 }
