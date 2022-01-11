@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long carId;
 
     @Column
@@ -56,16 +56,5 @@ public class Car {
 
     public void setSeries(Integer series) {
         this.series = series;
-    }
-
-    //To String method for debugging
-    @Override
-    public String toString() {
-        return "\nCar{" +
-                "carId=" + carId +
-                ", model='" + model + '\'' +
-                ", series=" + series +
-                ", user=" + user +
-                '}';
     }
 }
